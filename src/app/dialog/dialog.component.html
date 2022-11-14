@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Book Form</h1>
+<div mat-dialog-content>
+<form [formGroup]="bookForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Book Name</mat-label>
+      <input formControlName="bookName" matInput placeholder="Enter text here...">
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Book Category</mat-label>
+        <mat-select formControlName="bookCategory" placeholder="Book category">
+            <mat-option value="Education">Education</mat-option>
+            <mat-option value="Sports">Sports</mat-option>
+            <mat-option value="Novel">Novel</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Published Date</mat-label>
+        <input formControlName="bookPublishedDate" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+      <!-- <label id="example-radio-group-label">Book Status</label> -->
+      <label for="" ><h1>Status</h1></label>
+    <mat-radio-group formControlName="bookStatus" class="example-radio-group">
+        <mat-radio-button class="example-radio-button" *ngFor="let bookStatus of status" [value]="bookStatus">
+            {{bookStatus}}
+        </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input formControlName="bookPrice" matInput placeholder="Book price">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Comment</mat-label>
+        <textarea formControlName="comments" matInput placeholder="Comment"></textarea>
+    </mat-form-field>
+
+</form>
+
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Exit</button>
+        <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="addBook()" mat-dialog-close>Save</button>
+    </div>
+
+</div>
